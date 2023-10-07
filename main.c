@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include "functions.c"
+#include "Garrett.h"
+#include "Rodrigo.h"
 
 
 void hello(int boy) ;
