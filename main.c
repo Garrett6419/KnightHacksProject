@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include "functions.c"
+
 
 void hello(int boy) ;
 
