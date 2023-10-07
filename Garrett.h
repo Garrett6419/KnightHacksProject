@@ -1,9 +1,9 @@
-void drive(double* odomPtr, double*fuelPtr, double mpg, double distance) { // receiving addresses
-  if(distance > (mpg * *fuelPtr) ) { //checking to see if fuel will run out
-    *odomPtr += (mpg * *fuelPtr) ; // * taking value at the address
-    *fuelPtr = 0.0 ;
-    return ;
-  }
-  *fuelPtr -= distance/mpg ;
-  *odomPtr += distance ;
+const int NUMMOVES = 8;
+const int DX[] = {-1,-1,-1,0,0,1,1,1};
+const int DY[] = {-1,0,1,-1,1,-1,0,1};
+
+checkBlocks(block input, int row, int col) {
+    for(int i = 0 ; i < row ; i++) {
+
+    }
 }
