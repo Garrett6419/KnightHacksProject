@@ -5,6 +5,8 @@
 
 #define NUMPOS 20
 #define NUMQUESTS 8
+#define MAXLEN 10
+#define NUMWORDS 16
 
 void success() ;
 int boat() ;
@@ -14,6 +16,8 @@ int dragon() ;
 int rps() ;
 int riddle() ;
 int wait() ;
+int pause() ;
+int potion() ;
 
 int main(void) {
   srand(clock()) ;
@@ -29,81 +33,33 @@ int main(void) {
     printf("\\/    \\/\\__,_|\\__, |_|\\___|  \\___/      \\_____/\\__,_|_|_| \\___,_\\ \\__,_|\\___||___/\\__|\n") ;
     printf("               |___/                                                                   \n") ;
   printf("\nAsk the 8-Ball any question you so desire.\n") ;
+
+  char poss[NUMWORDS][MAXLEN] = {"Can","can","Will","will","Is","is","Does","does","Are","are","Do","do","Did","did","Should","should"};
+
   while(escape == 0) {
     scanf("%[^\n]s", input) ;
     scanf("%c", &garbage) ;
+
     if(strstr(input, "?") == NULL) {
         printf("You gotta have a Question Mark(?) to ask a question.\n") ;
         printf("Ask a question: ") ;
         continue ;
     }
-    if(strstr(input, "How") != NULL || strstr(input, "how") != NULL) {
 
+	for(int i = 0; i < NUMWORDS; i++)
+	{
+		if(strstr(input, poss[i]) != NULL)
+		{
+			escape = 1;
+			i = NUMWORDS;
+			continue;
+		}
+	}
+
+    if(escape) {
+        break ;
     }
-    else if(strstr(input, "Can") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "Will") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "Is") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "can") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "will") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "is") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "Does") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "does") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "Are") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "are") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "Do") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "do") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "Did") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "did") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "Should") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "should") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
+
     printf("It has to be a yes or no question.\n") ;
     printf("Ask a question: ") ;
   }
@@ -114,7 +70,7 @@ int main(void) {
   ran2 = rand() % strlen(input) ;
   ran = abs((input[ran2] - 'a') % NUMQUESTS) ;
 
-
+  // printf("ran = %d\n", ran);
 
   if(ran == 0) {
     printf("The 8-Ball answers you without any challenge\n") ;
@@ -150,6 +106,7 @@ int main(void) {
 
   return 0;
 }
+
 void success() {
   int ran = rand() % NUMPOS ;
   if(ran == 0) {
@@ -449,5 +406,50 @@ int wait() {
     printf("Thanks for waiting!\n") ;
     return 1 ;
 }
+
+int pause() {
+    //printf("The 8-Ball is buffering... Please wait a second\n") ;
+    int start = clock() ;
+    while(clock() - start < 750) {
+
+    }
+    //printf("Thanks for waiting!\n") ;
+    return 1 ;
+}
+
+int potion() {
+    srand(clock()) ;
+    int flag = 0 ;
+    char input[101] ;
+    printf("The 8-Ball transforms into potion with a questionable look.\n") ;
+    printf("Would you like to drink it? Yes or No") ;
+    int ran = rand() % 2 ;
+    while(flag < 1) {
+        scanf("%s", input) ;
+        if(strstr(input, "Yes") != NULL || strstr(input, "yes") != NULL ) {
+            if(ran == 0) {
+                printf("You drank the potion and your third-eye was opened. \nYou see a vision of the 8-Ball in front of you.") ;
+                return 1 ;
+            }
+            if(ran == 1) {
+                printf("You drank the potion and are transformed into a toad. \nAs a toad you cannot understand the complexity of a magic 8-Ball. \nThus you live the rest of your existence without knowing what the 8-Ball said") ;
+                return 0 ;
+            }
+        }
+        if(strstr(input, "No") != NULL || strstr(input, "no") != NULL) {
+            if(ran == 0) {
+                printf("You choose not to drink the potion. \nAfter a while the potion transforms back to the 8-Ball and your answer is revealed.\n") ;
+                return 1 ;
+            }
+            if(ran == 1) {
+                printf("You choose not to drink the potion. \nYou patiently wait for something to happen but it never does.\n") ;
+                return 0 ;
+            }
+        }
+        printf("Enter Yes or No: ") ;
+    }
+}
+
+
 
 
