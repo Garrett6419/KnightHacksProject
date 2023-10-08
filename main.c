@@ -93,8 +93,14 @@ int main(void) {
 
 
   int output = 0;
-  ran2 = rand() % strlen(input) ;
-  ran = (input[ran2] - 'a') % NUMQUESTS ;
+  for(int i = 0 ; i < 10 ; i++) {
+    srand(clock()) ;
+    ran2 = rand() % strlen(input) ;
+    ran = abs((input[ran2] - 'a') % NUMQUESTS) ;
+    printf("ran = %d\n", ran) ;
+  }
+
+
   if(ran == 0) {
     printf("The 8-Ball answers you without any challenge\n") ;
     output = 1 ;
