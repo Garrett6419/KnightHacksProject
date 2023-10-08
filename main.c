@@ -96,6 +96,14 @@ int main(void) {
         escape = 1 ;
         continue ;
     }
+    else if(strstr(input, "Should") != NULL) {
+        escape = 1 ;
+        continue ;
+    }
+    else if(strstr(input, "should") != NULL) {
+        escape = 1 ;
+        continue ;
+    }
     printf("It has to be a yes or no question.\n") ;
     printf("Ask a question: ") ;
   }
@@ -258,18 +266,18 @@ int plane() {
 int dragon() {
     srand(clock()) ;
     printf("Uh Oh! Seems like a dragon swooped in and stole the 8-Ball!\n") ;
-    printf("You decide to cast Fireball and roll for initiative") ;
+    printf("You decide to cast Fireball and roll for initiative\n") ;
     printf("You have 3 dice in front of you, do you want to roll the Red, Blue, or Green Dice?\n") ;
     printf("(Please Enter: Red, Blue, or Green)\n") ;
     char dice[101] ;
     scanf("%s", dice) ;
-    if(strcmp(dice, "Red") == 0) {
+    if(strcmp(dice, "Red") == 0 || strcmp(dice, "red") == 0) {
         printf("You rolled the Red dice\n") ;
     }
-    else if(strcmp(dice, "Green") == 0) {
+    else if(strcmp(dice, "Green") == 0 || strcmp(dice, "green") == 0) {
         printf("You rolled the Green dice\n") ;
     }
-    else if(strcmp(dice, "Blue") == 0) {
+    else if(strcmp(dice, "Blue") == 0 || strcmp(dice, "blue") == 0) {
         printf("You rolled the Blue dice\n") ;
     }
     else {
@@ -289,7 +297,7 @@ int dragon() {
         return 0 ;
     }
     if(ran == 3) {
-        printf("An 18! You successfully launch a Fireball.. \nThe Fireball catches the Dragon off guard ad it drops the Fireball before it flies away with it's tail between it's legs\n") ;
+        printf("An 18! You successfully launch a Fireball.. \nThe Fireball catches the Dragon off guard ad it drops the 8-Ball before it flies away with it's tail between it's legs\n") ;
         printf("You successfully retrieved the 8-Ball\n") ;
         return 1 ;
     }
