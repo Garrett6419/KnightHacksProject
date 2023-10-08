@@ -4,7 +4,7 @@
 #include <string.h>
 
 #define NUMPOS 20
-#define NUMQUESTS 8
+#define NUMQUESTS 9
 #define MAXLEN 10
 #define NUMWORDS 16
 
@@ -17,6 +17,7 @@ int wait() ;
 int pause() ;
 int potion() ;
 int magic() ;
+int dungeon() ;
 
 int main(void) {
   srand(clock()) ;
@@ -76,6 +77,7 @@ int main(void) {
   // printf("ran = %d\n", ran);
 
   //decides what quest the user will go on
+  ran = 8 ;
   if(ran == 0) {
     printf("The 8-Ball answers you without any challenge\n") ;
     output = 1 ;
@@ -98,8 +100,11 @@ int main(void) {
   else if(ran == 6) {
     output = potion() ;
   }
-  else if (ran == 7) {
+  else if(ran == 7) {
     output = magic() ;
+  }
+  else if(ran == 8) {
+    output = dungeon() ;
   }
 
   if(output) {
@@ -456,6 +461,65 @@ int magic() {
         return 1 ;
     }
 
+}
+
+int dungeon() {
+    srand(clock()) ;
+    int flag = 0 ;
+    char input[101] ;
+    int ran = rand() % 2 ;
+    printf("The 8-Ball teleports you to a mysterious dungeon. \nUnfortunately that drains the 8-Ball's magical batteries.\nThere's a room to the North, East, South and West. \nIn what room would you like to search for the magical batteries?\n") ;
+    scanf("%s", input) ;
+    while(!flag) {
+        if(strcmp(input, "North") == 0 || strcmp(input, "north") == 0 || strcmp(input, "N") == 0 || strcmp(input, "n") == 0) {
+            if(ran == 0) {
+                printf("You enter the North room.\nThe batteries are proudly presented on a pedestal. \nYou are ale to replace the batteries and find your answer.\n") ;
+                return 1 ;
+            }
+            if(ran == 1) {
+                printf("You enter the North room.\nThe batteries are proudly presented on a pedestal. \nIn your attempt to replace the batteries, you cause irrepairable damage to the 8-Ball and aren't ever able to find your answer.\n") ;
+                return 0 ;
+            }
+        }
+        if(strcmp(input, "East") == 0 || strcmp(input, "east") == 0 || strcmp(input, "E") == 0 || strcmp(input, "e") == 0) {
+            if(ran == 0) {
+                printf("You enter the East room. \nInside the room exists a single chest. \nYou are able to open the chest without any issue and find the batteries needed inside!\nYou are able to replace the batteries and get your answer.\n")  ;
+                return 1 ;
+            }
+            if(ran == 1) {
+                printf("You enter the East room. \nInside the room exists a single chest. \nAs you approach, the chest transforms into a monster and eats the 8-Ball straight from your hand.\nYou never see the 8-Ball again and your answer is lost forever.\n") ;
+                return 0 ;
+            }
+        }
+        if(strcmp(input, "South") == 0 || strcmp(input, "south") == 0 || strcmp(input, "S") == 0 || strcmp(input, "s") == 0) {
+            if(ran == 0) {
+                printf("You enter the South room. \nInside is a Dragon's Lair where a dragon is sleeping around their treasure. \nYou can see the batteries on top of the dragon's treasure mound and carefully make your approach.\nSkillfully you are able to make your way up the mound and replace the batteries.\nYour answer is revealed to you.\n") ;
+                return 1 ;
+            }
+            if(ran == 1) {
+                printf("You enter the South room. \nInside is a Dragon's Lair where a dragon is sleeping around their treasure. \nYou can see the batteries on top of the dragon's treasure mound and carefully make your approach.\nYou wake the resting Dragon and they take your magic 8-Ball, adding it to their collection, and then quickly escorts you out the room.\nYou never see that 8-Ball again and your answer is lost forever.\n") ;
+                return 0 ;
+            }
+        }
+        if(strcmp(input, "West") == 0 || strcmp(input, "west") == 0 || strcmp(input, "W") == 0 || strcmp(input, "w") == 0) {
+            ran = rand() % 3 ;
+            printf("You are teleported to another room\n") ;
+            if(ran == 0) {
+                strcpy(input, "North") ;
+                continue ;
+            }
+            else if(ran == 1) {
+                strcpy(input, "East") ;
+                continue ;
+            }
+            else if(ran == 2) {
+                strcpy(input, "South") ;
+                continue ;
+            }
+        }
+        printf("Enter North, East, South, or West: ") ;
+        scanf("%s", input) ;
+    }
 }
 
 
