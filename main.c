@@ -27,7 +27,7 @@ int main(void) {
     printf("/ /\\/\\ \\ (_| | (_| | | (__  | (_) |_____/ \\/  \\ (_| | | | / \\_/ /| |_| |  __/\\__ \\ |_ \n") ;
     printf("\\/    \\/\\__,_|\\__, |_|\\___|  \\___/      \\_____/\\__,_|_|_| \\___,_\\ \\__,_|\\___||___/\\__|\n") ;
     printf("               |___/                                                                   \n") ;
-  printf("\nAsk the 8 ball any question you so desire.\n") ;
+  printf("\nAsk the 8-Ball any question you so desire.\n") ;
   while(escape == 0) {
     scanf("%[^\n]s", input) ;
     scanf("%c", &garbage) ;
@@ -93,12 +93,10 @@ int main(void) {
 
 
   int output = 0;
-  for(int i = 0 ; i < 10 ; i++) {
-    srand(clock()) ;
-    ran2 = rand() % strlen(input) ;
-    ran = abs((input[ran2] - 'a') % NUMQUESTS) ;
-    printf("ran = %d\n", ran) ;
-  }
+  srand(clock()) ;
+  ran2 = rand() % strlen(input) ;
+  ran = abs((input[ran2] - 'a') % NUMQUESTS) ;
+
 
 
   if(ran == 0) {
