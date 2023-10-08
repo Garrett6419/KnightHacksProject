@@ -77,7 +77,6 @@ int main(void) {
   // printf("ran = %d\n", ran);
 
   //decides what quest the user will go on
-  ran = 8 ;
   if(ran == 0) {
     printf("The 8-Ball answers you without any challenge\n") ;
     output = 1 ;
@@ -502,7 +501,7 @@ int dungeon() {
             }
         }
         if(strcmp(input, "West") == 0 || strcmp(input, "west") == 0 || strcmp(input, "W") == 0 || strcmp(input, "w") == 0) {
-            ran = rand() % 3 ;
+            ran = rand() % 2 ;
             printf("You are teleported to another room\n") ;
             if(ran == 0) {
                 strcpy(input, "North") ;
@@ -510,10 +509,6 @@ int dungeon() {
             }
             else if(ran == 1) {
                 strcpy(input, "East") ;
-                continue ;
-            }
-            else if(ran == 2) {
-                strcpy(input, "South") ;
                 continue ;
             }
         }
