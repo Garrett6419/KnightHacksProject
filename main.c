@@ -4,13 +4,11 @@
 #include <string.h>
 
 #define NUMPOS 20
-#define NUMQUESTS 8
+#define NUMQUESTS 7
 #define MAXLEN 10
 #define NUMWORDS 16
 
 void success() ;
-int boat() ;
-int plane() ;
 int knightHacks() ;
 int dragon() ;
 int rps() ;
@@ -77,28 +75,26 @@ int main(void) {
     output = 1 ;
   }
   else if(ran == 1) {
-    output = boat() ;
-  }
-  else if(ran == 2) {
-    output = plane() ;
-  }
-  else if(ran == 3) {
     output = dragon() ;
   }
-  else if(ran == 4) {
+  else if(ran == 2) {
     output = knightHacks() ;
   }
-  else if(ran == 5) {
+  else if(ran == 3) {
     output = rps() ;
   }
-  else if(ran == 6) {
+  else if(ran == 4) {
     output = riddle() ;
   }
-  else if(ran == 7) {
+  else if(ran == 5) {
     output = wait() ;
+  }
+  else if(ran == 6) {
+    output = potion() ;
   }
 
   if(output) {
+    pause() ;
     printf("\nThe 8-Ball says:\n") ;
     success() ;
   }
@@ -171,55 +167,6 @@ void success() {
   }
 }
 
-int boat() {
-    srand(clock()) ;
-    printf("Uh Oh! It seems the 8-Ball is floating on a piece of wood in the middle of a river! \nLuckily you brought your boat with you so you can catch up to it\n") ;
-    int riverVelocity = rand() % 5 ;
-    int timeRemaining = rand() % 60 ;
-    int distance = rand() % 100 ;
-    int userAnswer = 0 ;
-    printf("The 8-Ball only has the answer up for %d seconds. \nIf the river is moving with velocity of %d m/s and you are %d m away, what is the minimum velocity you must go to get to the 8-Ball before the answer disappears\n", timeRemaining, riverVelocity, distance) ;
-    printf("(Truncate answer to the nearest answer Integer)\n") ;
-    scanf("%d", &userAnswer) ;
-    if(userAnswer == -100) {
-        printf("Wow, somehow that works\n") ;
-        return 1 ;
-    }
-    int answer = (distance + riverVelocity*timeRemaining)/timeRemaining ;
-    if(userAnswer == answer) {
-        printf("Yes, that's correct\n") ;
-        return 1 ;
-    }
-    else {
-        printf("Unfortunately that is incorrect and the answer to your question is lost forever :(\n") ;
-        return 0 ;
-    }
-}
-int plane() {
-    srand(clock()) ;
-    printf("Uh Oh! The 8-Ball somehow ended up being up dropped straight down from a plane! \nShockingly, it was dropped directly above you.\n") ;
-    int planeHeight = rand() % 9750 ;
-    int windVelocity = rand() % 10 ;
-    printf("The wind seems to be blowing at a constant speed of %d m/s all the way up to the plane which is %d m above you\n", windVelocity, planeHeight) ;
-    printf("How fast do you need to go to get to where the 8-Ball will land if you ran at a constant speed from the time it was dropped?\n") ;
-    printf("(Don't worry, you're very fast so you can definitely make it to the landing site)\n") ;
-    printf("(There's no air resistance either because the 8-Ball is magic)\n") ;
-    printf("(Truncate answer to the nearest answer Integer)\n") ;
-    int userAnswer = 0 ;
-    scanf("%d", &userAnswer) ;
-    if(userAnswer == windVelocity) {
-        printf("Yes, that's correct\n") ;
-        printf("You caught the 8-Ball!\n") ;
-        return 1 ;
-    }
-    else if(userAnswer > windVelocity) {
-        printf("Oh No! You ran right past the 8-Ball and it hit the ground and shattered into a thousand pieces :(\n") ;
-    }
-    else {
-        printf("Oh No! You didn't make it in time, the 8-Ball bounced right back up and was lost forever in the vast void of space :(\n") ;
-    }
-}
-
 int dragon() {
     srand(clock()) ;
     printf("Uh Oh! Seems like a dragon swooped in and stole the 8-Ball!\n") ;
@@ -268,16 +215,16 @@ int dragon() {
 int knightHacks() {
     int attempts = 0 ;
     char garbage ;
-    printf("It seems the 8-Ball wants to hear you say how much you love Knightro\n") ;
+    printf("It seems the 8-Ball wants to hear you say how much you love KnightHacks\n") ;
     char input[101] ;
     while(attempts < 5) {
         if(attempts > 0) {
             printf("Try Again\n") ;
         }
-        printf("Please Enter: \"I Love Knightro!\"\n") ;
+        printf("Please Enter: \"I Love KnightHacks!\"\n") ;
         scanf("%[^\n]s", input) ;
         scanf("%c", &garbage) ;
-        if(strcmp(input, "I Love Knightro!") == 0 ) {
+        if(strcmp(input, "I Love KnightHacks!") == 0 ) {
             printf("Yeah You Do!\n") ;
             return 1 ;
         }
@@ -398,10 +345,24 @@ int riddle() {
 }
 
 int wait() {
-    printf("The 8-Ball is buffering... Please wait a second\n") ;
+    printf("The 8-Ball is buffering... Please hold\n") ;
     int start = clock() ;
+    int flag = 0 ;
+    int flagTwo = 0 ;
+    int flagThree = 0 ;
     while(clock() - start < 30000) {
-
+        if(clock() - start < 15500 && !flag && clock() - start > 14500) {
+            printf("Halfway there!\n") ;
+            flag = 1;
+        }
+        if(clock() - start < 8000  && !flagTwo && clock() - start > 7000) {
+            printf("Still working away!\n") ;
+            flagTwo  = 1 ;
+        }
+        if(clock() - start < 25500  && !flagThree && clock() - start > 24500) {
+            printf("So close!\n") ;
+            flagThree = 1 ;
+        }
     }
     printf("Thanks for waiting!\n") ;
     return 1 ;
@@ -421,18 +382,18 @@ int potion() {
     srand(clock()) ;
     int flag = 0 ;
     char input[101] ;
-    printf("The 8-Ball transforms into potion with a questionable look.\n") ;
-    printf("Would you like to drink it? Yes or No") ;
+    printf("The 8-Ball transforms into a potion with a questionable look.\n") ;
+    printf("Would you like to drink it? Yes or No\n") ;
     int ran = rand() % 2 ;
     while(flag < 1) {
         scanf("%s", input) ;
         if(strstr(input, "Yes") != NULL || strstr(input, "yes") != NULL ) {
             if(ran == 0) {
-                printf("You drank the potion and your third-eye was opened. \nYou see a vision of the 8-Ball in front of you.") ;
+                printf("You drank the potion and your third-eye was opened. \nYou see a vision of the 8-Ball in front of you.\n") ;
                 return 1 ;
             }
             if(ran == 1) {
-                printf("You drank the potion and are transformed into a toad. \nAs a toad you cannot understand the complexity of a magic 8-Ball. \nThus you live the rest of your existence without knowing what the 8-Ball said") ;
+                printf("You drank the potion and are transformed into a toad. \nAs a toad you cannot understand the complexity of a magic 8-Ball. \nThus you live the rest of your existence without knowing what the 8-Ball said.\n") ;
                 return 0 ;
             }
         }
