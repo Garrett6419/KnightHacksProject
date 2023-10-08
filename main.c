@@ -4,7 +4,7 @@
 #include <string.h>
 
 #define NUMPOS 20
-#define NUMQUESTS 7
+#define NUMQUESTS 8
 
 void success() ;
 int boat() ;
@@ -13,6 +13,7 @@ int knightHacks() ;
 int dragon() ;
 int rps() ;
 int riddle() ;
+int wait() ;
 
 int main(void) {
   srand(clock()) ;
@@ -120,6 +121,9 @@ int main(void) {
   }
   else if(ran == 6) {
     output = riddle() ;
+  }
+  else if(ran == 7) {
+    output = wait() ;
   }
 
   if(output) {
@@ -419,4 +423,15 @@ int riddle() {
         return 0 ;
     }
 }
+
+int wait() {
+    printf("The 8-Ball is buffering... Please wait a second\n") ;
+    int start = clock() ;
+    while(clock() - start < 30000) {
+
+    }
+    printf("Thanks for waiting!\n") ;
+    return 1 ;
+}
+
 
