@@ -4,7 +4,7 @@
 #include <string.h>
 
 #define NUMPOS 20
-#define NUMQUESTS 7
+#define NUMQUESTS 8
 #define MAXLEN 10
 #define NUMWORDS 16
 
@@ -16,6 +16,7 @@ int riddle() ;
 int wait() ;
 int pause() ;
 int potion() ;
+int magic() ;
 
 int main(void) {
   srand(clock()) ;
@@ -92,9 +93,12 @@ int main(void) {
   else if(ran == 6) {
     output = potion() ;
   }
+  else if (ran == 7) {
+    output = magic() ;
+  }
 
   if(output) {
-    pause() ;
+    // pause() ;
     printf("\nThe 8-Ball says:\n") ;
     success() ;
   }
@@ -409,6 +413,37 @@ int potion() {
         }
         printf("Enter Yes or No: ") ;
     }
+}
+
+int magic() {
+    srand(clock()) ;
+    printf("A curse has befallen the 8-Ball and it transforms int a 20 sided die.\n") ;
+    printf("With nothing else to do, you decide to roll the dice.\n") ;
+    pause() ;
+    int ran = rand() % 20 + 1;
+    printf("You rolled a %d\n", ran) ;
+    pause() ;
+    if(ran < 6) {
+        printf("A Wild Bard Appears!\n") ;
+        printf("Unfortunately, Bards know nothing about curses and they talked your ear off for about an hour before leaving. \nYou couldn't figure out how to turn the dice back into the 8-Ball.\n") ;
+        return 0 ;
+    }
+    else if(ran < 11) {
+        printf("A Barbarian approaches!\n") ;
+        printf("The Barbarian is dumbfounded by the dice. \nAfter about 1 minute of trying they are sent into a rage and destroy the dice. \nWith no hope of turning it back into a the 8-Ball you give up and realize your answer is lost forever.\n") ;
+        return 0 ;
+    }
+    else if(ran < 16) {
+        printf("A Warlock appears from a puff of smoke!\n") ;
+        printf("The Warlock consults a extraplanar entity and after much deliberation they figure out how to undo the curse. \nThe dice turns back into the 8-Ball and your answer reveals itself.\n") ;
+        return 1 ;
+    }
+    else if(ran < 21) {
+        printf("A Druid comes from a nearby forest!\n") ;
+        printf("The Druid knows exactly what to do and the curse on the dice is lifted. \nYou are now able to get your answer.\n") ;
+        return 1 ;
+    }
+
 }
 
 
