@@ -88,6 +88,14 @@ int main(void) {
         escape = 1 ;
         continue ;
     }
+    else if(strstr(input, "Did") != NULL) {
+        escape = 1 ;
+        continue ;
+    }
+    else if(strstr(input, "did") != NULL) {
+        escape = 1 ;
+        continue ;
+    }
     printf("It has to be a yes or no question.\n") ;
     printf("Ask a question: ") ;
   }
