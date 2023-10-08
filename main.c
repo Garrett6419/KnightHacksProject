@@ -5,6 +5,8 @@
 
 #define NUMPOS 20
 #define NUMQUESTS 8
+#define MAXLEN 10
+#define NUMWORDS 18
 
 void success() ;
 int boat() ;
@@ -29,73 +31,29 @@ int main(void) {
     printf("\\/    \\/\\__,_|\\__, |_|\\___|  \\___/      \\_____/\\__,_|_|_| \\___,_\\ \\__,_|\\___||___/\\__|\n") ;
     printf("               |___/                                                                   \n") ;
   printf("\nAsk the 8-Ball any question you so desire.\n") ;
+  
+  char poss[NUMWORDS][MAXLEN] = {"How","how","Can","can","Will","will","Is","is","Does","does","Are","are","Do","do","Did","did","Should","should"};
+  
   while(escape == 0) {
     scanf("%[^\n]s", input) ;
     scanf("%c", &garbage) ;
+	
     if(strstr(input, "?") == NULL) {
         printf("You gotta have a Question Mark(?) to ask a question.\n") ;
         printf("Ask a question: ") ;
         continue ;
     }
-    if(strstr(input, "How") != NULL || strstr(input, "how") != NULL) {
-
-    }
-    else if(strstr(input, "Can") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "Will") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "Is") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "can") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "will") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "is") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "Does") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "does") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "Are") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "are") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "Do") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "do") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "Did") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
-    else if(strstr(input, "did") != NULL) {
-        escape = 1 ;
-        continue ;
-    }
+	
+	for(int i = 0; i < NUMWORDS; i++)
+	{
+		if(strstr(input, poss[i]) != NULL)
+		{
+			escape = 1;
+			i = NUMWORDS;
+			continue;
+		}
+	}
+	
     printf("It has to be a yes or no question.\n") ;
     printf("Ask a question: ") ;
   }
@@ -106,7 +64,7 @@ int main(void) {
   ran2 = rand() % strlen(input) ;
   ran = abs((input[ran2] - 'a') % NUMQUESTS) ;
 
-
+  printf("ran = %d\n", ran);
 
   if(ran == 0) {
     printf("The 8-Ball answers you without any challenge\n") ;
@@ -142,6 +100,7 @@ int main(void) {
 
   return 0;
 }
+
 void success() {
   int ran = rand() % NUMPOS ;
   if(ran == 0) {
