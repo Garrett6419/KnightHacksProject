@@ -33,6 +33,7 @@ int main(void) {
     printf("               |___/                                                                   \n") ;
   printf("\nAsk the 8-Ball any question you so desire.\n") ;
 
+  //array of different keywords expected in a yes/no question
   char poss[NUMWORDS][MAXLEN] = {"Can","can","Will","will","Is","is","Does","does","Are","are","Do","do","Did","did","Should","should"};
 
   while(escape == 0) {
@@ -45,6 +46,7 @@ int main(void) {
         continue ;
     }
 
+    //checks input to see if the question is phrased for a yes/no answer
 	for(int i = 0; i < NUMWORDS; i++)
 	{
 		if(strstr(input, poss[i]) != NULL)
@@ -64,6 +66,8 @@ int main(void) {
   }
 
 
+  //To let the user have some control over their fate,
+  //we're choosing to calculate the random quest based off a randomly selected character in their question
   int output = 0;
   srand(clock()) ;
   ran2 = rand() % strlen(input) ;
@@ -71,6 +75,7 @@ int main(void) {
 
   // printf("ran = %d\n", ran);
 
+  //decides what quest the user will go on
   if(ran == 0) {
     printf("The 8-Ball answers you without any challenge\n") ;
     output = 1 ;
@@ -171,6 +176,7 @@ void success() {
   }
 }
 
+// Half of the
 int dragon() {
     srand(clock()) ;
     printf("Uh Oh! Seems like a dragon swooped in and stole the 8-Ball!\n") ;
@@ -216,6 +222,7 @@ int dragon() {
     }
 }
 
+// I Love KnightHacks!
 int knightHacks() {
     int attempts = 0 ;
     char garbage ;
@@ -238,6 +245,8 @@ int knightHacks() {
     return 0 ;
 }
 
+// a classic game of rps... how an 8-Ball can play rps is a good question
+// luckily magic answers all
 int rps() {
     srand(clock()) ;
     int attempts = 0 ;
@@ -275,6 +284,7 @@ int rps() {
     return 0 ;
 }
 
+//All these riddles are from Lord of the Rings... if you don't like them take it up Tolkien himself
 int riddle() {
     srand(clock()) ;
     printf("The 8-Ball has decided you must answer a riddle to get your answer.\n") ;
@@ -372,6 +382,7 @@ int wait() {
     return 1 ;
 }
 
+//pause for dramatic effect
 int pause() {
     //printf("The 8-Ball is buffering... Please wait a second\n") ;
     int start = clock() ;
@@ -419,6 +430,7 @@ int magic() {
     srand(clock()) ;
     printf("A curse has befallen the 8-Ball and it transforms int a 20 sided die.\n") ;
     printf("With nothing else to do, you decide to roll the dice.\n") ;
+    //the pause makes it feel like something is actually happening and the user isn't bombarded with a bunch of text instantaniously
     pause() ;
     int ran = rand() % 20 + 1;
     printf("You rolled a %d\n", ran) ;
