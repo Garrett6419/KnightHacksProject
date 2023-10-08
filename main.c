@@ -63,6 +63,30 @@ int main(void) {
         escape = 1 ;
         continue ;
     }
+    else if(strstr(input, "Does") != NULL) {
+        escape = 1 ;
+        continue ;
+    }
+    else if(strstr(input, "does") != NULL) {
+        escape = 1 ;
+        continue ;
+    }
+    else if(strstr(input, "Are") != NULL) {
+        escape = 1 ;
+        continue ;
+    }
+    else if(strstr(input, "are") != NULL) {
+        escape = 1 ;
+        continue ;
+    }
+    else if(strstr(input, "Do") != NULL) {
+        escape = 1 ;
+        continue ;
+    }
+    else if(strstr(input, "do") != NULL) {
+        escape = 1 ;
+        continue ;
+    }
     printf("It has to be a yes or no question.\n") ;
     printf("Ask a question: ") ;
   }
