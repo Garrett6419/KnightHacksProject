@@ -1,2 +1,9 @@
-blah blah blah
-blah blah blah
+Magic 8-ball Quest
+
+The Magic 8-ball Quest is an application that answers any yes or no questions fed to it in classic 8-ball fashion.
+Except sometimes the 8-ball sends the user into a short quest to retrieve it.
+The quest taken by the user is determined by a randomly chosen character from their question, this allows their question to have an agency into determining their fate.
+
+This program is writte in C language, to run it, first compile it using gcc 8-Ball_Quest.c and then run it using ./a.out
+
+Written and Designed by Garrett Bequette and Rodrigo Santos
